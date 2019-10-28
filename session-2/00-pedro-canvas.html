@@ -1,0 +1,31 @@
+<html>
+
+<style>
+    canvas {
+        border: 10px solid #bada55;
+    }
+</style>
+
+<canvas id="game" width="500" height="500"></canvas>
+
+<script>
+
+var canvas = document.getElementById('game');
+var context = canvas.getContext('2d');
+
+context.fillStyle = 'purple';
+context.fillRect(0, 0, 400, 400);
+
+context.fillStyle = 'rgba(255, 127, 127, 0.3)';
+context.fillRect(50, 50, 200, 450);
+
+context.lineWidth = 10;
+context.strokeStyle = 'yellow';
+context.strokeRect(50, 50, 200, 450);
+
+context.font = '30px Zapfino';
+context.fillStyle = 'white';
+context.fillText("Hello World", 100, 50);
+</script>
+
+</html>

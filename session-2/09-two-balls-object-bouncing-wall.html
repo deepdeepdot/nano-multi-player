@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Ball Animation</title>
+    <script type="text/javascript">
+    
+        // var ball1 = {
+        //     x: 50,
+        //     y: 50,
+        //     dx: 1,
+        //     dy: 1,
+        //     display: function(ctx) {},
+        //     updatePosition: function(width, height) {}
+        // };
+
+        function Ball(x, y, dx, dy, color) {
+            this.x = x;
+            this.y = y;
+            this.dx = dx;
+            this.dy = dy;
+
+            this.display = function(ctx) {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 30, 0, Math.PI * 2, false);
+                ctx.strokeStyle = color;
+                ctx.closePath();
+                ctx.stroke();
+            }
+
+            this.updatePosition = function(width, height) {
+                this.x = this.x + this.dx;
+                this.y = this.y + this.dy;
+
+                if (this.x < 0 || this.x > width) { // reverse
+                    this.dx = -this.dx;
+                }
+                if (this.y < 0 || this.y > height) { // reverse
+                    this.dy = -this.dy;
+                }
+            }
+        }
+
+        var ball1 = new Ball(50, 50, 1, 1, '#bada55');
+        var ball2 = new Ball(250, 125, 0.75, 1.25, 'purple');
+    
+        function displayFrame() {
+            var canvas = document.getElementById('tutorial');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+                ball1.display(ctx);
+                ball2.display(ctx);
+            }
+            ball1.updatePosition(canvas.width, canvas.height);
+            ball2.updatePosition(canvas.width, canvas.height);
+        }
+
+        var animationId;
+        function draw() {
+            // animationId = setTimeout(draw, 100);
+            animationId = requestAnimationFrame(draw, 100);
+            displayFrame();
+        }
+
+    </script>
+
+    <style type="text/css">
+        html,
+        body,
+        canvas {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            min-height: 200px;
+            min-width: 800px;
+        }
+
+        canvas {
+            border: 1px solid black;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body onload="draw();">
+    <canvas id="tutorial" width="800" height="200"></canvas>
+</body>
+
+</html>

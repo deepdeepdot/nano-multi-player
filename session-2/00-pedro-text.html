@@ -1,0 +1,27 @@
+<style>
+    #time {
+        padding: 20px;
+        color: #bada55;
+        background-color: purple;
+        font-size: 60px;
+        font-family: Palatino;
+    }
+</style>
+
+<h2>
+    Time <span id="time"></span>
+</h2>
+
+<script>
+
+    var wait = 1000; // 1 second
+
+    function displayTime() {
+        var time = document.getElementById('time');
+        var now = new Date();
+        time.innerHTML = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+    }
+
+    
+</script>
+

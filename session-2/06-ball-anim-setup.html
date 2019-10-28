@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Ball Animation</title>
+    <script type="text/javascript">
+
+        function displayFrame() {
+            var canvas = document.getElementById('tutorial');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+
+                ctx.beginPath();
+                ctx.arc(50, 50, 30, 0, Math.PI * 2, false);
+                ctx.strokeStyle = 'blue';
+                ctx.closePath();
+                ctx.stroke();
+            }
+        }
+
+        var animationId;
+        function draw() {
+            animationId = requestAnimationFrame(draw);
+            displayFrame();
+        }
+
+    </script>
+    <style type="text/css">
+        html, body, canvas {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            min-height: 800px;
+            min-width: 1024px;
+        }
+        canvas {
+            border: 1px solid black;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body onload="draw();">
+    <canvas id="tutorial" width="800" height="1024"></canvas>
+</body>
+
+</html>

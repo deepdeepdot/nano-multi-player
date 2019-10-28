@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Canvas tutorial</title>
+    <script type="text/javascript">
+
+    function draw() {
+        var canvas = document.getElementById('tutorial');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = 'purple';
+
+            // Filled triangle
+            ctx.beginPath();
+            ctx.moveTo(25, 25);
+            ctx.lineTo(105, 25);
+            ctx.lineTo(25, 105);
+            ctx.fill();
+
+            // ctx.strokeStyle = "#FF0000";
+
+            var gradient = ctx.createLinearGradient(0, 0, 170, 0);
+            gradient.addColorStop("0", "magenta");
+            // gradient.addColorStop("0.8", "yellow");
+            gradient.addColorStop("1.0", "red");
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 10;
+
+            // Stroked triangle
+            ctx.beginPath();
+            ctx.moveTo(125, 125);
+            ctx.lineTo(125, 45);
+            ctx.lineTo(45, 125);
+            ctx.closePath();
+            ctx.stroke();
+        }
+    }
+
+    </script>
+    <style type="text/css">
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body onload="draw();">
+    <canvas id="tutorial" width="150" height="150"></canvas>
+</body>
+
+</html>
