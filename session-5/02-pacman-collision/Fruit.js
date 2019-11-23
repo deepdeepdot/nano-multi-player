@@ -7,20 +7,19 @@ function Fruit(x, y, dx, dy, image, source, destination) {
   this.y = y;
   this.dx = dx;
   this.dy = dy;
-  this.invisible = false;
 
   this.display = function(ctx) {
-      if (!this.invisible) {
+      if (this.isActive) {
         ctx.drawImage(
-            image,
-            source.x,
-            source.y,
-            source.width,
-            source.height,
-            this.x,
-            this.y,
-            destination.width,
-            destination.height
+          image,
+          source.x,
+          source.y,
+          source.width,
+          source.height,
+          this.x,
+          this.y,
+          destination.width,
+          destination.height
         );
       }
   };

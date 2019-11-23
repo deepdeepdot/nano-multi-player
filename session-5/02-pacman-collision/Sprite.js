@@ -45,8 +45,9 @@ function Sprite(x, y, dx, dy, radius, color) {
   };
 
   this.overlaps = function(otherSprite) {
-    //   return true;
-    return isInside(this, otherSprite) || isInside(otherSprite, this);    
+      // return true;
+    return isInside(this, { x: otherSprite.x, y: otherSprite.y} ) 
+        || isInside(otherSprite, {x : this.x, y: this.y } );    
     // return ((this.x < otherSprite.x && otherSprite.x <= this.x + this.width) &&
     //         (this.y < otherSprite.y && otherSprite.y <= this.y + this.height)) ||
     //        ((otherSprite.x < this.x && this.x < otherSprite.x + otherSprite.width) &&
