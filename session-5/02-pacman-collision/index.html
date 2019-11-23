@@ -1,0 +1,41 @@
+<style type="text/css">
+html,
+body,
+canvas {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-height: 200px;
+    min-width: 800px;
+}
+
+canvas {
+    border: 1px solid black;
+    width: 100%;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+</style>
+
+<img id="fruitImg" src="images/fruits.png">
+
+<canvas id="tutorial" width="800" height="200"></canvas>
+
+<script type="module">
+// https://www.sitepoint.com/using-es-modules/
+import { displayFrame } from './SceneWithWall.js';
+
+var animationId;
+
+function draw() {
+    // animationId = setTimeout(draw, 100);
+    animationId = requestAnimationFrame(draw, 100);
+    displayFrame("tutorial");
+}
+
+draw();
+</script>
