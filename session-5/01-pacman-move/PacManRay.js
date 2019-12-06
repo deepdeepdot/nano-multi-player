@@ -23,14 +23,15 @@ function PacMan(x, y, dx, dy, radius, color) {
       this.dy = -this.dy; // reverse
     }
 
-    if (wall) {
-      if (wall.isInside(this.x + this.dx, this.y)) {
-        this.dx = -this.dx; // reverse
-      }
-      if (wall.isInside(this.x, this.y + this.dy)) {
-        this.dy = -this.dy; // reverse
-      }
-    }
+    walls &&
+      walls.forEach(wall => {
+        if (wall.isInside(this.x + this.dx, this.y)) {
+          this.dx = -this.dx; // reverse
+        }
+        if (wall.isInside(this.x, this.y + this.dy)) {
+          this.dy = -this.dy; // reverse
+        }
+      });
 
     // Move to new position
     this.x = this.x + this.dx;

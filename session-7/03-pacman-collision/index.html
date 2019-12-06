@@ -1,0 +1,53 @@
+<style type="text/css">
+html,
+body,
+canvas {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-height: 200px;
+    min-width: 800px;
+}
+
+canvas {
+    border: 1px solid black;
+    width: 100%;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+button {
+    width: 200;
+    height: 75;
+    font: Verdana;
+    font-size: 24px;
+    background-color: black;
+    color: white;
+}
+
+</style>
+
+<img id="fruitImg" src="images/fruits.png">
+
+<canvas id="tutorial" width="800" height="200"></canvas>
+
+<h2>Score: <span id="score">0</span></h2>
+<button id="spawn">Spawn a Fruit!</button>
+
+<script type="module">
+// https://www.sitepoint.com/using-es-modules/
+import { displayFrame } from './SceneWithWall.js';
+
+var animationId;
+
+function draw() {
+    // animationId = setTimeout(draw, 100);
+    animationId = requestAnimationFrame(draw, 100);
+    displayFrame("tutorial");
+}
+
+draw();
+</script>
