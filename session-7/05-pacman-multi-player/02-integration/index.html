@@ -1,0 +1,90 @@
+<style type="text/css">
+html,
+body,
+canvas {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-height: 200px;
+    min-width: 800px;
+}
+
+canvas {
+    border: 1px solid black;
+    width: 100%;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+button {
+    width: 200;
+    height: 75;
+    font: Verdana;
+    font-size: 24px;
+    background-color: black;
+    color: white;
+}
+
+</style>
+
+<img id="fruitImg" src="images/fruits.png">
+
+<canvas id="tutorial" width="800" height="200"></canvas>
+
+<h2>Score: <span id="score">0</span></h2>
+<button id="spawn">Spawn a Fruit!</button>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+<script type="module">
+import { displayFrame, spawnFruit, addfruitMunchListener } from './js/SceneWithWall.js';
+
+var animationId;
+
+function draw() {
+    // animationId = setTimeout(draw, 100);
+    animationId = requestAnimationFrame(draw, 100);
+    displayFrame("tutorial");
+}
+
+
+$(function () {
+    var socket = io();
+
+    socket.on("fruit:spawn", data => {
+        // spwan new fruit using data
+        console.log('Spawn fruit: ' + JSON.stringify(data));
+
+        // Let's create a "shared" fruit!
+    });
+
+    socket.on("fruit:munched", message => {
+        // spwan new fruit using message
+        console.log('Fruit was munched: ' + JSON.stringify(message));
+
+        console.log('We can update some points: ' + message.data.points);
+    });
+
+    addfruitMunchListener(fruit => {
+        socket.emit('fruit:munched', fruit);
+    });
+
+    var spawn = document.getElementById("spawn");
+    spawn.onclick = function () {
+        let type = "pineapple";
+        spawnFruit(type);
+
+        socket.emit('fruit:spawn', {
+            type: type
+        });
+    }
+
+    draw();
+});
+
+</script>
+
